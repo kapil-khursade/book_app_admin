@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_14_045440) do
+ActiveRecord::Schema.define(version: 2023_06_14_051337) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 2023_06_14_045440) do
     t.integer "publication_year"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "shelf_id"
+    t.index ["shelf_id"], name: "index_books_on_shelf_id"
   end
 
   create_table "sections", force: :cascade do |t|
@@ -56,6 +58,10 @@ ActiveRecord::Schema.define(version: 2023_06_14_045440) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "section_id"
+    t.index ["section_id"], name: "index_shelves_on_section_id"
   end
 
+  add_foreign_key "books", "shelves"
+  add_foreign_key "shelves", "sections"
 end

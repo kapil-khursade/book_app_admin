@@ -332,4 +332,6 @@ ActiveAdmin.setup do |config|
   # You can switch to using Webpacker here.
   #
   # config.use_webpacker = true
+
+  config.authorization_adapter = ActiveAdmin::CanCanAdapter
 end

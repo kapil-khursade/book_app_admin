@@ -1,11 +1,12 @@
 ActiveAdmin.register AdminUser do
-  permit_params :email, :password, :password_confirmation
+  permit_params :email, :password, :password_confirmation, :role
 
   index do
     selectable_column
     id_column
     column :email
     column :current_sign_in_at
+    column :role
     column :sign_in_count
     column :created_at
     actions
@@ -21,6 +22,7 @@ ActiveAdmin.register AdminUser do
       f.input :email
       f.input :password
       f.input :password_confirmation
+      f.input :role, as: :select, collection: ['admin', 'user'],  prompt: 'Select a Role'
     end
     f.actions
   end
